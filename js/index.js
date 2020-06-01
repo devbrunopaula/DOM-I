@@ -37,6 +37,44 @@ const siteContent = {
   },
 };
 
-// Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+(function() {
+  createLogo()
+  navBuilder()
+  cta(siteContent.cta)
+  topContent(siteContent["main-content"])
+ }())
+
+ function createLogo(){
+   // // Example: Update the img src for the logo
+  let logo = document.getElementById("logo-img");
+  logo.setAttribute('src', siteContent["nav"]["img-src"])
+ }
+
+
+function navBuilder() {
+  const navItems = document.getElementsByTagName('a')
+  
+  for(let i = 0; i < navItems.length; i++){
+    navItems[i].innerText = siteContent["nav"][`nav-item-${i+1}`]
+  }
+}
+
+
+function cta(data) {
+const ctaText = document.querySelector(".cta-text").children
+const ctaImage = document.querySelector('#cta-img')
+const r = data.h1.split(' ')
+    ctaText[0].innerHTML += `<h1>${r[0]}</h1>
+                             <h1>${r[1]}</h1>
+                             <h1>${r[2]}</h1>`
+ctaText[1].innerText = 'Get Started'
+ctaImage.setAttribute('src', data["img-src"])
+}
+
+function topContent(data) {
+  console.log(data)
+  const textContent = document.querySelector('.text-content').children
+  console.log(textContent)
+  textContent[0].innerText = data["features-h4"]
+  textContent[1].innerText =  data["features-content"]
+}
