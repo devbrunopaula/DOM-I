@@ -37,44 +37,95 @@ const siteContent = {
   },
 };
 
-(function() {
-  createLogo()
-  navBuilder()
-  cta(siteContent.cta)
-  topContent(siteContent["main-content"])
- }())
 
- function createLogo(){
-   // // Example: Update the img src for the logo
-  let logo = document.getElementById("logo-img");
-  logo.setAttribute('src', siteContent["nav"]["img-src"])
- }
+// HEADER
+let logo = document.getElementById("logo-img");
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
 
-
-function navBuilder() {
-  const navItems = document.getElementsByTagName('a')
-  
-  for(let i = 0; i < navItems.length; i++){
-    navItems[i].innerText = siteContent["nav"][`nav-item-${i+1}`]
-  }
+let TopNav = document.querySelectorAll('a');
+for (let i = 0; i < TopNav.length; i++) {
+  TopNav[i].textContent = siteContent["nav"][`nav-item-${i + 1}`];
+  TopNav[i].style.color = 'green';
 }
 
+let newLinkItem = document.createElement('a');
+newLinkItem.href = '#';
+newLinkItem.textContent = 'Item 1';
+newLinkItem.style.color = 'green';
 
-function cta(data) {
-const ctaText = document.querySelector(".cta-text").children
-const ctaImage = document.querySelector('#cta-img')
-const r = data.h1.split(' ')
-    ctaText[0].innerHTML += `<h1>${r[0]}</h1>
-                             <h1>${r[1]}</h1>
-                             <h1>${r[2]}</h1>`
-ctaText[1].innerText = 'Get Started'
-ctaImage.setAttribute('src', data["img-src"])
+let newLinkItem2 = document.createElement('a');
+newLinkItem2.href = '#';
+newLinkItem2.textContent = 'Item 2';
+newLinkItem2.style.color = 'green';
+
+let nav = document.querySelector('nav');
+nav.appendChild(newLinkItem2);
+nav.prepend(newLinkItem);
+
+
+let ctaH1 = document.querySelector('.cta-text h1');
+const ctaH1Text = siteContent.cta.h1
+const splitCtaH1Text = ctaH1Text.split(' ')
+console.log(splitCtaH1Text)
+ctaH1.innerHTML += `
+${splitCtaH1Text[0]}<br/>
+${splitCtaH1Text[1]}<br/>
+${splitCtaH1Text[2]}
+`
+
+
+let ctaButton = document.querySelector('button');
+ctaButton.textContent = siteContent['cta']['button'];
+
+let ctaImg = document.getElementById('cta-img');
+ctaImg.setAttribute('src', siteContent['cta']['img-src']);
+
+// TOP CONTENT
+let tc1H1 = document.querySelector('.text-content h4');
+tc1H1.textContent = siteContent['main-content']['features-h4'];
+
+let tc1p = document.querySelector('.text-content p');
+tc1p.textContent = siteContent['main-content']['features-content'];
+
+let tc2H1 = document.querySelector('.text-content:nth-child(2) h4');
+tc2H1.textContent = siteContent['main-content']['about-h4'];
+
+let tc2p = document.querySelector('.text-content:nth-child(2) p');
+tc2p.textContent = siteContent['main-content']['about-content'];
+
+let middleImg = document.getElementById('middle-img');
+middleImg.setAttribute('src', siteContent['main-content']['middle-img-src']);
+
+// BOTTOM CONTENT
+let bc1H1 = document.querySelector('.bottom-content .text-content h4');
+bc1H1.textContent = siteContent['main-content']['services-h4'];
+
+let bc1p = document.querySelector('.bottom-content .text-content p');
+bc1p.textContent = siteContent['main-content']['services-content'];
+
+let bc2H1 = document.querySelector('.bottom-content .text-content:nth-child(2) h4');
+bc2H1.textContent = siteContent['main-content']['product-h4'];
+
+let bc2p = document.querySelector('.bottom-content .text-content:nth-child(2) p');
+bc2p.textContent = siteContent['main-content']['product-content'];
+
+let bc3H1 = document.querySelector('.bottom-content .text-content:nth-child(3) h4');
+bc3H1.textContent = siteContent['main-content']['vision-h4'];
+
+let bc3p = document.querySelector('.bottom-content .text-content:nth-child(3) p');
+bc3p.textContent = siteContent['main-content']['vision-content'];
+
+// CONTACT
+let contactH4 = document.querySelector('.contact h4');
+contactH4.textContent = siteContent['contact']['contact-h4'];
+
+let contactP = document.querySelectorAll('.contact p');
+for (let i = 0; i < contactP.length; i++) {
+  contactP[0].textContent = siteContent['contact']['address'];
+  contactP[1].textContent = siteContent['contact']['phone'];
+  contactP[2].textContent = siteContent['contact']['email'];
 }
 
-function topContent(data) {
-  console.log(data)
-  const textContent = document.querySelector('.text-content').children
-  console.log(textContent)
-  textContent[0].innerText = data["features-h4"]
-  textContent[1].innerText =  data["features-content"]
-}
+// FOOTER AREA
+let footer = document.querySelector('footer p');
+footer.textContent = siteContent['footer']['copyright'];
